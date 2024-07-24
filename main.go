@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"go-hexagonal/api/middlewares"
 	"go-hexagonal/api/routes"
 	"go-hexagonal/configs"
 	"go-hexagonal/pkg/db"
+	"os"
+	"os/signal"
 	"time"
 
 	"github.com/goccy/go-json"
@@ -28,6 +31,17 @@ func main() {
 
 	r := app.Group("/v1/api")
 	routes.User(r)
+
+	// Gracefully shutting down
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		s := <-c
+		if s.String() == "interrupt" {
+			fmt.Println("Gracefully shutting down...")
+			app.Shutdown()
+		}
+	}()
 
 	app.Listen("localhost:" + configs.GetString("SERVER_PORT"))
 }
