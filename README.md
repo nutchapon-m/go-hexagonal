@@ -2,8 +2,9 @@
 ### Go Hexagonal Architecture Template สำหรับผู้ที่สนใจอยากจะนำไปใช้เป็น template สำหรับขึ้นโปรเจคในการทำงาน API หลังบ้านต่าง ๆ ของ Web application
 ความรู้เกี่ยวกับภาษา go อื่นๆ สามารถศึกษาเพิ่มเติมได้ที่ [codebangkok](https://github.com/codebangkok/golang) ซึ่งถือเป็นแหล่งความรู้ที่ทำให้ repository นี้เกิดขึ้น
 #### คำสั่งสำหรับการ clone repository นี้
-```
+```bash
 git clone https://github.com/NutchaponMet/go-hexagonal-architecture-template.git
+go mod init <your-project-name>
 ```
 > [!NOTE]
 > ภายในโปรเจคนี้จะประกอบไปด้วย library ที่สำคัญอยู่หลายตัวที่ใช้สำหรับสร้าง Backend Web application
@@ -11,41 +12,50 @@ git clone https://github.com/NutchaponMet/go-hexagonal-architecture-template.git
 
 ### Project Structure
 ```bash
-├── adapters
-│   ├── handlers
-│   │   └── user.go
-│   └── repositories
-│       └── user.go
-├── api
-│   ├── middlewares
-│   └── routes
-├── client
-│   └── client.go # third party
-├── configs
-│   └── configs.go 
-├── core
-│   ├── domains   # all models to communicate with database is here.
-│   │   └── user.go
-│   ├── ports     # all interfaces
-│   │   ├── repositories.go
-│   │   └── services.go
-│   ├── schemas   # all struct to use with handler request response.
-│   │   └── user.go
-│   └── services  # all logic of project.
-│       ├── login.go
-│       └── user.go
-└── pkg # other function that will used in project.
-│   ├── errors
-│   │   └── errs.go
-│   ├── logs
-│   │   └── logs.go
-│   ├── schedulers
-│   │   └── schedulers.go
-│   └── utils
-│       └── handlers.go
-├── main.go
+├── Dockerfile
+├── README.md
+├── config.yml
+├── external
+│   ├── cache
+│   │   └── redis.go
+│   ├── db
+│   │   ├── mysql.go
+│   │   └── postgres.go
+│   └── queues
+│       └── rmqp.go
 ├── go.mod
-└── go.sum
+├── go.sum
+├── internal
+│   ├── configs
+│   │   └── configs.go
+│   ├── core
+│   │   ├── domains
+│   │   │   └── user.go
+│   │   ├── ports
+│   │   │   ├── auth_ports.go
+│   │   │   └── user_ports.go
+│   │   └── services
+│   │       ├── auth_services.go
+│   │       └── utils.go
+│   ├── handlers
+│   │   ├── auth_handlers.go
+│   │   └── utils.go
+│   ├── pkgs
+│   │   ├── errs
+│   │   │   └── errs.go
+│   │   ├── logs
+│   │   │   └── logs.go
+│   │   └── utils
+│   │       └── utils.go
+│   └── repositories
+│       └── user_repositories.go
+├── main.go
+└── server
+    ├── middleware.go
+    ├── routes
+    │   └── v1
+    │       └── auth.go
+    └── server.go
 ```
 
 ---
