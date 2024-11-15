@@ -94,15 +94,6 @@ go get github.com/gofiber/contrib/fiberzap/v2
 ### 4. [viper](https://pkg.go.dev/github.com/spf13/viper) - ตัวจัดการ configuration
 ```bash
 go get github.com/spf13/viper
-
-## หรือหากมีการเก็บ env ไว้ระบบ infisical ให้ลง package นี้ด้วย
-
-go get github.com/infisical/go-sdk
-```
-------------
-### 5. [mongodb driver](https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo) - ใช้สำหรับเป็นที่เก็บ logs - [Optional]
-```bash
-go get go.mongodb.org/mongo-driver/mongo
 ```
 ------------
 ## Configuration File
