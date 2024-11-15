@@ -1,2 +1,6 @@
 config.y*ml
 .env
+**/compose.y*ml
+**/docker-compose.y*ml
+go.sum
+go.mod
