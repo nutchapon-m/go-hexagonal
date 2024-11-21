@@ -14,6 +14,8 @@ go mod init <your-project-name>
 ```bash
 ├── Dockerfile
 ├── README.md
+├── cmd
+│   └── main.go
 ├── config.yml
 ├── external
 │   ├── cache
@@ -49,7 +51,6 @@ go mod init <your-project-name>
 │   │       └── utils.go
 │   └── repositories
 │       └── user_repositories.go
-├── main.go
 └── server
     ├── middleware.go
     ├── routes
